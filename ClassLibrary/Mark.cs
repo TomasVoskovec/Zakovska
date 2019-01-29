@@ -11,5 +11,10 @@ namespace ClassLibrary
         public int Id { get; set; }
         public int Value { get; set; }
         public int Scale { get; set; }
+
+        enum Classes
+        {
+            Math = 0
+        }
     }
 }
