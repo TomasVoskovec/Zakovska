@@ -9,12 +9,10 @@ namespace ClassLibrary
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public int Value { get; set; }
-        public int Scale { get; set; }
 
-        enum Classes
-        {
-            Math = 0
-        }
+        public float Value { get; set; }
+        public int Weight { get; set; }
+
+        public int SubjectId { get; set; }
     }
 }

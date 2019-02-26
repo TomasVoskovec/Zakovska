@@ -15,7 +15,7 @@ namespace ClassLibrary
                 if (database == null)
                 {
                     database = new ItemDatabase(
-                      Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "C:/Users/voskoto16/source/C#/Zakovska/MyDatabase.db3"));
+                      Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MyDatabase.db3"));
                 }
                 return database;
             }

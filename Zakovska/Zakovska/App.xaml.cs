@@ -11,7 +11,7 @@ namespace Zakovska
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new Zakovska();
         }
 
         protected override void OnStart()

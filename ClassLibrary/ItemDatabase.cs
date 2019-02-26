@@ -13,16 +13,27 @@ namespace ClassLibrary
         {
             this.database = new SQLiteAsyncConnection(dbPath);
             database.CreateTableAsync<Mark>().Wait();
+            database.CreateTableAsync<Subject>().Wait();
         }
 
-        public async Task<List<Mark>> GetItemsAsync()
+        public async Task<List<Mark>> GetMarksAsync()
         {
             return await database.Table<Mark>().ToListAsync();
         }
 
-        public Task<List<Mark>> GetItemsNotDoneAsync()
+        public async Task<List<Subject>> GetSubjectsAsync()
+        {
+            return await database.Table<Subject>().ToListAsync();
+        }
+
+        public Task<List<Mark>> GetMarksNotDoneAsync()
         {
             return database.QueryAsync<Mark>("SELECT * FROM [Mark] WHERE [Done] = 0");
+        }
+
+        public Task<List<Subject>> GetSubjectsById(int Id)
+        {
+            return database.QueryAsync<Subject>("SELECT * FROM [Subject] WHERE [Id] = {0}", Id);
         }
 
         public async Task<Mark> GetItemAsync(int id)
@@ -30,7 +41,19 @@ namespace ClassLibrary
             return await database.Table<Mark>().Where(i => i.Id == id).FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveItemAsync(Mark item)
+        public Task<int> SaveMarkAsync(Mark item)
+        {
+            if (item.Id != 0)
+            {
+                return database.UpdateAsync(item);
+            }
+            else
+            {
+                return database.InsertAsync(item);
+            }
+        }
+
+        public Task<int> SaveSubjectAsync(Subject item)
         {
             if (item.Id != 0)
             {
