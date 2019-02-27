@@ -30,7 +30,7 @@
             <Label Text="Váha: " Grid.Row="3" Grid.Column="0" VerticalTextAlignment="Center" />
             <Entry x:Name="markWeightInput" WidthRequest="200" Grid.Row="3" Grid.Column="2" MaxLength="3" Placeholder="20" Keyboard="Numeric"/>
 
-            <Button Text="Odeslat" Grid.Row="4"></Button>
+            <Button Text="Odeslat" Grid.Row="4" Clicked="Send_Clicked"></Button>
 
         </Grid>
     </ContentPage.Content>

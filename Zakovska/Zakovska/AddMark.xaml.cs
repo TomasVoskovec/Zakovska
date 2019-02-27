@@ -41,5 +41,44 @@ namespace Zakovska
         {
             loadedSubjects = await MySQLite.Database.GetSubjectsAsync();
         }
+
+        private void Send_Clicked(object sender, EventArgs e)
+        {
+            Mark newMark = new Mark();
+
+            if (markValueInput.Text != "")
+            {
+                if (markWeightInput.Text != "")
+                {
+                    if (subjectPicker.SelectedItem.ToString() != "" || subjectPicker.SelectedItem != null)
+                    {
+                        string valueStr = markValueInput.Text;
+                        newMark.Value = float.Parse(valueStr);
+
+                        newMark.Weight = int.Parse(markWeightInput.Text);
+
+                        foreach (Subject subject in loadedSubjects.ToList())
+                        {
+                            if(subject.Name == subjectPicker.SelectedItem.ToString())
+                            {
+                                newMark.SubjectId = subject.Id;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        DisplayAlert("Chyba", "Nejdříve vyberte předmět", "OK");
+                    }
+                }
+                else
+                {
+                    DisplayAlert("Chyba", "Špatně vyplněná váha známky", "OK");
+                }
+            }
+            else
+            {
+                DisplayAlert("Chyba", "Špatně vyplněná známka", "OK");
+            }
+        }
     }
 }
