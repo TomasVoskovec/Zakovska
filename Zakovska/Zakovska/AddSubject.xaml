@@ -3,14 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Zakovska.AddSubject">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Přidaání předmětu" 
-                   HorizontalOptions="CenterAndExpand"
-                   Margin="5"
-                   FontSize="Large"
-                   />
-            <Label Text="Známka: "/>
-            <Entry ></Entry>
-        </StackLayout>
+        <Grid 
+            VerticalOptions="Start"
+            HorizontalOptions ="Center"
+            Margin="10">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Přidat předmět" FontSize="Large" HorizontalOptions="CenterAndExpand" Grid.Row="0" Grid.ColumnSpan="2" Margin="0, 20"></Label>
+            
+            <Label Text="Název Předmětu: " Grid.Row="1" Grid.Column="0" VerticalTextAlignment="Center" />
+            <Entry x:Name="SubjectNameInput" WidthRequest="200" Grid.Row="1" Grid.Column="1" Completed="Entry_Completed" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

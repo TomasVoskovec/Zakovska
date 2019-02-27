@@ -31,9 +31,14 @@ namespace ClassLibrary
             return database.QueryAsync<Mark>("SELECT * FROM [Mark] WHERE [Done] = 0");
         }
 
-        public Task<List<Subject>> GetSubjectsById(int Id)
+        public Task<List<Subject>> GetSubjectsById(int id)
         {
-            return database.QueryAsync<Subject>("SELECT * FROM [Subject] WHERE [Id] = {0}", Id);
+            return database.QueryAsync<Subject>("SELECT * FROM [Subject] WHERE [Id] = {0}", id);
+        }
+
+        public Task<List<Subject>> GetSubjectsByName(string name)
+        {
+            return database.QueryAsync<Subject>("SELECT * FROM [Subject] WHERE [Name] = {0}", name);
         }
 
         public async Task<Mark> GetItemAsync(int id)

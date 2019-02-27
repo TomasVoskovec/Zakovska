@@ -2,10 +2,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Zakovska.AddMark">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Přidat známku"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid 
+            VerticalOptions="Start"
+            HorizontalOptions ="Center"
+            Margin="10">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Přidat známku" FontSize="Large" Margin="0,20" Grid.Row="0" Grid.ColumnSpan="2" HorizontalTextAlignment="Center" HorizontalOptions="Center"></Label>
+            
+            <Picker x:Name="subjectPicker" Title="Vyberte předmět" Grid.Row="1"></Picker>
+
+            <Label Text="Známka: " Grid.Row="2" Grid.Column="0" VerticalTextAlignment="Center" />
+            <Entry x:Name="markValueInput" WidthRequest="200" Grid.Row="2" Grid.Column="2" MaxLength="3" Placeholder="1,5" Keyboard="Numeric"/>
+
+            <Label Text="Váha: " Grid.Row="3" Grid.Column="0" VerticalTextAlignment="Center" />
+            <Entry x:Name="markWeightInput" WidthRequest="200" Grid.Row="3" Grid.Column="2" MaxLength="3" Placeholder="20" Keyboard="Numeric"/>
+
+            <Button Text="Odeslat" Grid.Row="4"></Button>
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

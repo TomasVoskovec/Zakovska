@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using ClassLibrary;
+
 namespace Zakovska
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
@@ -16,5 +18,28 @@ namespace Zakovska
 		{
 			InitializeComponent ();
 		}
-	}
+
+        List<Subject> loadedSubjects = new List<Subject>();
+
+        protected override async void OnAppearing()
+        {
+            await loadSubjects();
+            updateSubjects();
+        }
+
+        void updateSubjects ()
+        {
+            subjectPicker.Items.Clear();
+
+            foreach (Subject subject in loadedSubjects.ToList())
+            {
+                subjectPicker.Items.Add(subject.Name);
+            }
+        }
+
+        async Task loadSubjects()
+        {
+            loadedSubjects = await MySQLite.Database.GetSubjectsAsync();
+        }
+    }
 }

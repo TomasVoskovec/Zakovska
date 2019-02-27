@@ -44,6 +44,8 @@ namespace Zakovska
             List<Subject> loadedSubject = await MySQLite.Database.GetSubjectsAsync();
             List<Mark> loadedMarks = await MySQLite.Database.GetMarksAsync();
 
+            MarksStack.Children.Clear();
+
             foreach (Subject subject in loadedSubject)
             {
                 Label subjectLabel = new Label();

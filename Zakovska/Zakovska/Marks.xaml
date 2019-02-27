@@ -4,7 +4,7 @@
              x:Class="Zakovska.Marks">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout x:Name="MarksStack">
+            <StackLayout x:Name="MarksStack"  Margin="10">
                 
             </StackLayout>
         </ScrollView>
