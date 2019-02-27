@@ -18,6 +18,7 @@ namespace Zakovska
 
             Children.Add(new Marks() { Title = "Známky"});
             Children.Add(new AddMark() { Title = "Přidat známky" });
+            Children.Add(new AddSubject() { Title = "Přidat předmět" });
         }
     }
 }
