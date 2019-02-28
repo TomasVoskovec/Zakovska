@@ -46,11 +46,11 @@ namespace Zakovska
         {
             Mark newMark = new Mark();
 
-            if (markValueInput.Text != "")
+            if (markValueInput.Text != "" && float.TryParse(markValueInput.Text, out float value) && value <= 5 && value >= 1)
             {
-                if (markWeightInput.Text != "")
+                if (markWeightInput.Text != "" && int.TryParse(markWeightInput.Text, out int wight) && wight <= 100 && wight >= 1)
                 {
-                    if (subjectPicker.SelectedItem.ToString() != "" || subjectPicker.SelectedItem != null)
+                    if (subjectPicker.SelectedIndex != -1)
                     {
                         string valueStr = markValueInput.Text;
                         newMark.Value = float.Parse(valueStr);
@@ -64,21 +64,33 @@ namespace Zakovska
                                 newMark.SubjectId = subject.Id;
                             }
                         }
+
+                        postMarkToDb(newMark);
+
+                        DisplayAlert("", "Známka přidána", "OK");
                     }
                     else
                     {
+                        subjectPicker.Focus();
                         DisplayAlert("Chyba", "Nejdříve vyberte předmět", "OK");
                     }
                 }
                 else
                 {
+                    markWeightInput.Focus();
                     DisplayAlert("Chyba", "Špatně vyplněná váha známky", "OK");
                 }
             }
             else
             {
+                markValueInput.Focus();
                 DisplayAlert("Chyba", "Špatně vyplněná známka", "OK");
             }
+        }
+
+        async void postMarkToDb(Mark mark)
+        {
+            await MySQLite.Database.SaveMarkAsync(mark);
         }
     }
 }
