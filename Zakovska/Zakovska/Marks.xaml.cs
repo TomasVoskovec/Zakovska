@@ -52,10 +52,16 @@ namespace Zakovska
                 subjectLabel.Text = subject.Name;
                 MarksStack.Children.Add(subjectLabel);
 
+                int weights = 0;
+                float values = 0;
+
                 foreach (Mark mark in loadedMarks)
                 {
                     if(mark.SubjectId == subject.Id)
                     {
+                        values += mark.Value * (float)mark.Weight;
+                        weights += mark.Weight;
+
                         Label markLabel = new Label();
                         markLabel.Text = mark.Value.ToString() + " (" + mark.Weight + "%)";
                         if (mark.Value >= 4.5f)
@@ -69,6 +75,8 @@ namespace Zakovska
                         MarksStack.Children.Add(markLabel);
                     }
                 }
+
+                subjectLabel.Text += " (" + values/weights + ")";
             }
         }
 
